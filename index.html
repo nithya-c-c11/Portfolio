@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio - M. Nithya Nanda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #f4f4f4;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      animation: slideDown 1s ease forwards;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .profile-photo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: url('nithya.jpg') center/cover;
+      border: 3px solid #ffd700;
+      animation: glow 2s infinite alternate;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #f4f4f4;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: #ffd700;
+      left: 0;
+      bottom: -5px;
+      transition: 0.4s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffd700;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 6rem 2rem 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      animation: softPulse 4s ease-in-out infinite;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #ffffff;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      animation: glow 3s infinite alternate;
+    }
+
+    #home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .home-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: url('nithya.jpg') center/cover no-repeat;
+      border: 4px solid #ffd700;
+      margin: 0 auto 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    .cta-button {
+      padding: 1rem 2rem;
+      background: #ffd700;
+      color: #1e3c72;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      margin-top: 1.5rem;
+      box-shadow: 0 0 10px #ffd700;
+    }
+
+    .cta-button:hover {
+      background: #e6c200;
+      box-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700;
+    }
+
+    #about .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 2rem;
+      animation: fadeInUp 2s ease forwards;
+    }
+
+    .about-image {
+      width: 160px;
+      height: 200px;
+      border-radius: 50% / 60%;
+      background: url('nithya.jpg') center/cover no-repeat;
+      border: 4px solid #ffd700;
+      margin: auto;
+      animation: glow 2s infinite alternate;
+    }
+
+    .about-text {
+      color: #ffd700;
+      margin-bottom: 1.2rem;
+      font-size: 20px;
+    }
+
+    .resume-card,
+    .contact-card,
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      color: #f4f4f4;
+    }
+
+    .skill-bar {
+      background: #ccc;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .skill-bar-fill {
+      height: 20px;
+      background: #ffd700;
+      text-align: right;
+      padding-right: 10px;
+      color: #000;
+      line-height: 20px;
+      font-weight: bold;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .social-links {
+      margin-top: 1.2rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .social-icon img {
+      width: 40px;
+      height: 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 8px;
+    }
+
+    .social-icon img:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 15px #ffd700;
+    }
+
+    a {
+      color: #ffd700;
+    }
+
+    p {
+      color: #e0e0e0;
+    }
+
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+      50% { box-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; }
+      100% { box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+    }
+
+    @keyframes softPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.02); opacity: 0.95; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="profile-photo"></div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#resume">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="home-photo"></div>
+        <p>Full Stack Developer / UI Designer</p>
+        <p><strong>Name:</strong> M. Nithya Nanda</p>
+        <p><strong>Phone:</strong> +91-8328519124</p>
+        <a href="#about" class="cta-button">Discover More</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="about-image"></div>
+      <div class="about-text-block">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-text">Hello! I’m <strong>M. Nithya Nanda</strong>, a passionate Full Stack Developer excited to start my journey in tech.</p>
+        <p class="about-text">I specialize in HTML, CSS, JavaScript, React, Node.js and more. I enjoy turning ideas into functional digital experiences.</p>
+        <p class="about-text">Looking for a challenging and growth-oriented role where I can contribute and learn from experts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <p>A responsive personal website built using HTML, CSS, and JS.</p>
+          <p><a href="#">View Code on GitHub</a></p>
+        </div>
+        <div class="project-card">
+          <h3>Freshers day</h3>
+          <p>For freshers day conducting the events in college.</p>
+          <p><a href="https://github.com/nithya-c-c11/freshers-day">View Code on GitHub</a></p>
+        </div>
+        <div class="project-card">
+          <h3>Event-listing</h3>
+          <p>For collge purpose the listing the events</p>
+          <p><a href="https://github.com/nithya-c-c11/Eventlisting">View Code on GitHub</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="resume-card">
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%;">HTML - 90%</div></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;">CSS - 85%</div></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%;">JavaScript - 80%</div></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 75%;">React - 75%</div></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 70%;">Node.js - 70%</div></div>
+        <p><a href="resume.docx" target="_blank" class="cta-button">View My Resume</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-card">
+        <p><strong>Email:</strong> <a href="mailto:nithyananda785612@gmail.com">nithyananda785612@gmail.com</a></p>
+        <p><strong>Phone:</strong> +91-8328519124</p>
+        <div class="social-links">
+          <a href="https://github.com/nithya-c-c11" class="social-icon"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" /></a>
+          <a href="https://www.linkedin.com/in/nithya-nanda-586515280?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-icon"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" /></a>
+          <a href="https://www.hackerrank.com/profile/nithyananda78561" class="social-icon"><img src="https://cdn.worldvectorlogo.com/logos/hackerrank.svg" alt="HackerRank" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 M. Nithya Nanda. All rights reserved. | Contact: nithyananda785612@gmail.com
+  </footer>
+</body>
+</html>
